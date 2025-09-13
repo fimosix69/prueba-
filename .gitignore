@@ -1,0 +1,18 @@
+# Archivos sensibles
+.env
+
+# Archivos de entorno Python
+__pycache__/
+*.pyc
+
+# Archivos de logs
+*.log
+
+# Archivos temporales
+*.tmp
+*.swp
+
+# Archivos de sistema
+.DS_Store
+Thumbs.db
+
