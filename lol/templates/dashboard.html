@@ -1,0 +1,1176 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="cyber-dashboard">
+    <!-- Header con efectos de partículas -->
+    <div class="dashboard-header">
+        <h2 class="cyber-title glitch" data-text="PANEL_DE_CONTROL">
+            <i class="fas fa-tachometer-alt"></i>
+            PANEL DE CONTROL
+        </h2>
+        <div class="dashboard-particles"></div>
+    </div>
+
+    <!-- Tarjeta de bienvenida con efecto holográfico -->
+    <div class="cyber-card holographic">
+        <div class="hologram-effect"></div>
+        <div class="card-content">
+            <h3 class="cyber-subtitle">
+                <span class="cyber-glow">¿En qué te puedo ayudar hoy?</span>
+            </h3>
+            
+            <!-- Quick Actions Grid con efectos futuristas -->
+            <div class="cyber-grid">
+                <a href="/chat" class="cyber-button primary large" data-hover="CONVERSAR">
+                    <div class="button-inner">
+                        <div class="button-icon">
+                            <i class="fas fa-comment-dots"></i>
+                        </div>
+                        <span class="button-text">Chatear con Chipi</span>
+                        <div class="button-glow"></div>
+                    </div>
+                </a>
+                
+                <a href="/passwords" class="cyber-button secondary large" data-hover="SEGURIDAD">
+                    <div class="button-inner">
+                        <div class="button-icon">
+                            <i class="fas fa-key"></i>
+                        </div>
+                        <span class="button-text">Gestionar Contraseñas</span>
+                        <div class="button-glow"></div>
+                    </div>
+                </a>
+                
+                <a href="/reminders" class="cyber-button secondary large" data-hover="RECORDATORIOS">
+                    <div class="button-inner">
+                        <div class="button-icon">
+                            <i class="fas fa-clock"></i>
+                        </div>
+                        <span class="button-text">Recordatorios</span>
+                        <div class="button-glow"></div>
+                    </div>
+                </a>
+                
+                <a href="/contacts" class="cyber-button secondary large" data-hover="CONTACTOS">
+                    <div class="button-inner">
+                        <div class="button-icon">
+                            <i class="fas fa-users"></i>
+                        </div>
+                        <span class="button-text">Contactos de Emergencia</span>
+                        <div class="button-glow"></div>
+                    </div>
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Tarjeta de accesibilidad con interfaz de terminal - CORREGIDA -->
+    <div class="cyber-card terminal">
+        <div class="terminal-header">
+            <div class="terminal-dots">
+                <span class="dot red"></span>
+                <span class="dot yellow"></span>
+                <span class="dot green"></span>
+            </div>
+            <span class="terminal-title">Sistema de Accesibilidad</span>
+        </div>
+        
+        <div class="terminal-content">
+            <div class="accessibility-grid">
+                <button id="font-size-toggle" class="cyber-toggle" data-state="off">
+                    <div class="toggle-track">
+                        <div class="toggle-thumb"></div>
+                    </div>
+                    <span class="toggle-label">
+                        <i class="fas fa-text-height"></i>
+                        Texto Grande
+                    </span>
+                    <div class="toggle-glow"></div>
+                </button>
+                
+                <button id="contrast-toggle" class="cyber-toggle" data-state="off">
+                    <div class="toggle-track">
+                        <div class="toggle-thumb"></div>
+                    </div>
+                    <span class="toggle-label">
+                        <i class="fas fa-adjust"></i>
+                        Alto Contraste
+                    </span>
+                    <div class="toggle-glow"></div>
+                </button>
+                
+                <button id="voice-toggle" class="cyber-toggle" data-state="off">
+                    <div class="toggle-track">
+                        <div class="toggle-thumb"></div>
+                    </div>
+                    <span class="toggle-label">
+                        <i class="fas fa-volume-up"></i>
+                        Activar Voz
+                    </span>
+                    <div class="toggle-glow"></div>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Sección de información reciente con efecto de datastream -->
+    <div class="cyber-card datastream">
+        <div class="datastream-header">
+            <h3 class="cyber-subtitle">
+                <i class="fas fa-history"></i>
+                Tu información reciente
+            </h3>
+            <div class="datastream-live">
+                <span class="live-indicator"></span>
+                EN VIVO
+            </div>
+        </div>
+        
+        <div class="datastream-content">
+            <!-- Panel de últimas conversaciones -->
+            <div class="data-panel">
+                <h4 class="panel-title">
+                    <i class="fas fa-comment"></i>
+                    Últimas conversaciones
+                </h4>
+                <div id="recent-chats" class="data-feed">
+                    <div class="data-item loading">
+                        <div class="data-pulse"></div>
+                        <div class="data-content">
+                            <div class="data-line"></div>
+                            <div class="data-line short"></div>
+                        </div>
+                    </div>
+                    <div class="data-item loading">
+                        <div class="data-pulse"></div>
+                        <div class="data-content">
+                            <div class="data-line"></div>
+                            <div class="data-line short"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Panel de recordatorios -->
+            <div class="data-panel">
+                <h4 class="panel-title">
+                    <i class="fas fa-bell"></i>
+                    Próximos recordatorios
+                </h4>
+                <div id="upcoming-reminders" class="data-feed">
+                    <div class="data-item loading">
+                        <div class="data-pulse"></div>
+                        <div class="data-content">
+                            <div class="data-line"></div>
+                            <div class="data-line short"></div>
+                        </div>
+                    </div>
+                    <div class="data-item loading">
+                        <div class="data-pulse"></div>
+                        <div class="data-content">
+                            <div class="data-line"></div>
+                            <div class="data-line short"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Efecto de streaming de datos -->
+        <div class="datastream-effect">
+            <div class="stream-line"></div>
+            <div class="stream-line"></div>
+            <div class="stream-line"></div>
+        </div>
+    </div>
+
+    <!-- Widget de estado del sistema - ACTUALIZADO CON INFORMACIÓN REAL -->
+    <div class="cyber-card status">
+        <div class="status-grid">
+            <div class="status-item">
+                <div class="status-icon security">
+                    <i class="fas fa-shield-alt"></i>
+                </div>
+                <div class="status-info">
+                    <span class="status-label">Seguridad</span>
+                    <span class="status-value" id="security-status">VERIFICANDO...</span>
+                </div>
+            </div>
+            
+            <div class="status-item">
+                <div class="status-icon connection">
+                    <i class="fas fa-wifi"></i>
+                </div>
+                <div class="status-info">
+                    <span class="status-label">Conexión</span>
+                    <span class="status-value" id="connection-status">VERIFICANDO...</span>
+                </div>
+            </div>
+            
+            <div class="status-item">
+                <div class="status-icon battery">
+                    <i class="fas fa-battery-full" id="battery-icon"></i>
+                </div>
+                <div class="status-info">
+                    <span class="status-label">Batería</span>
+                    <span class="status-value" id="battery-status">VERIFICANDO...</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+// Verificar autenticación al cargar el dashboard - CORREGIDO
+async function checkAuth() {
+    try {
+        console.log('🔍 Verificando autenticación...');
+        const response = await fetch('/api/check-auth', {
+            credentials: 'include',
+            headers: {
+                'Cache-Control': 'no-cache'
+            }
+        });
+        
+        // Solo redirigir si es un error de autenticación claro
+        if (response.status === 401 || response.status === 403) {
+            console.log('❌ No autenticado, redirigiendo a login');
+            window.location.href = '/login';
+            return false;
+        }
+        
+        // Para otros errores, no redirigir inmediatamente
+        if (!response.ok) {
+            console.warn('⚠️ Error en verificación de auth, pero no redirigiendo:', response.status);
+            return true; // Permitir continuar para evitar bucles
+        }
+        
+        console.log('✅ Usuario autenticado correctamente');
+        return true;
+    } catch (error) {
+        console.error('🌐 Error de conexión al verificar auth:', error);
+        // No redirigir en caso de error de red para evitar bucles
+        return true;
+    }
+}
+
+// Sistema de monitoreo en tiempo real
+class SystemMonitor {
+    constructor() {
+        this.batteryLevel = 0;
+        this.connectionType = 'desconocido';
+        this.isSecure = false;
+    }
+
+    async init() {
+        await this.checkBattery();
+        this.checkConnection();
+        this.checkSecurity();
+        this.startMonitoring();
+    }
+
+    async checkBattery() {
+        try {
+            if ('getBattery' in navigator) {
+                const battery = await navigator.getBattery();
+                this.updateBatteryStatus(battery);
+                
+                battery.addEventListener('chargingchange', () => {
+                    this.updateBatteryStatus(battery);
+                });
+                
+                battery.addEventListener('levelchange', () => {
+                    this.updateBatteryStatus(battery);
+                });
+            } else {
+                document.getElementById('battery-status').textContent = 'API no disponible';
+                document.getElementById('battery-status').className = 'status-value';
+            }
+        } catch (error) {
+            console.error('Error checking battery:', error);
+            document.getElementById('battery-status').textContent = 'Error';
+        }
+    }
+
+    updateBatteryStatus(battery) {
+        this.batteryLevel = Math.round(battery.level * 100);
+        const batteryElement = document.getElementById('battery-status');
+        const batteryIcon = document.getElementById('battery-icon');
+        
+        batteryElement.textContent = `${this.batteryLevel}%${battery.charging ? ' (Cargando)' : ''}`;
+        
+        // Actualizar icono según el nivel de batería
+        if (this.batteryLevel >= 80) {
+            batteryIcon.className = 'fas fa-battery-full';
+            batteryElement.className = 'status-value active';
+        } else if (this.batteryLevel >= 40) {
+            batteryIcon.className = 'fas fa-battery-three-quarters';
+            batteryElement.className = 'status-value stable';
+        } else if (this.batteryLevel >= 20) {
+            batteryIcon.className = 'fas fa-battery-quarter';
+            batteryElement.className = 'status-value';
+        } else {
+            batteryIcon.className = 'fas fa-battery-empty';
+            batteryElement.className = 'status-value';
+        }
+    }
+
+    checkConnection() {
+        try {
+            if ('connection' in navigator) {
+                const connection = navigator.connection;
+                this.updateConnectionStatus(connection);
+                
+                connection.addEventListener('change', () => {
+                    this.updateConnectionStatus(connection);
+                });
+            } else {
+                document.getElementById('connection-status').textContent = 'API no disponible';
+                document.getElementById('connection-status').className = 'status-value';
+            }
+        } catch (error) {
+            console.error('Error checking connection:', error);
+            document.getElementById('connection-status').textContent = 'Error';
+        }
+    }
+
+    updateConnectionStatus(connection) {
+        const connectionElement = document.getElementById('connection-status');
+        
+        if (connection.effectiveType) {
+            let type = connection.effectiveType.toUpperCase();
+            let strength = 'ESTABLE';
+            
+            if (type.includes('4G') || type.includes('3G')) {
+                strength = 'RÁPIDA';
+            } else if (type.includes('2G')) {
+                strength = 'LENTA';
+            } else if (type.includes('SLOW-2G')) {
+                strength = 'MUY LENTA';
+            }
+            
+            connectionElement.textContent = `${type} - ${strength}`;
+            connectionElement.className = 'status-value stable';
+        } else {
+            connectionElement.textContent = 'ONLINE';
+            connectionElement.className = 'status-value stable';
+        }
+    }
+
+    checkSecurity() {
+        const securityElement = document.getElementById('security-status');
+        this.isSecure = window.location.protocol === 'https:';
+        
+        if (this.isSecure) {
+            securityElement.textContent = 'PROTEGIDO';
+            securityElement.className = 'status-value active';
+        } else {
+            securityElement.textContent = 'NO SEGURO';
+            securityElement.className = 'status-value';
+        }
+    }
+
+    startMonitoring() {
+        // Monitoreo continuo cada 30 segundos
+        setInterval(() => {
+            this.checkConnection();
+            this.checkSecurity();
+        }, 30000);
+    }
+}
+
+// Efectos de inicialización del dashboard
+class DashboardEffects {
+    constructor() {
+        this.initialized = false;
+        this.authChecked = false;
+        this.systemMonitor = new SystemMonitor();
+    }
+
+    async initialize() {
+        if (this.initialized) return;
+        
+        // Esperar a que se verifique la autenticación primero
+        this.authChecked = await checkAuth();
+        
+        if (!this.authChecked) {
+            console.log('⏹️ Auth check failed, not initializing dashboard');
+            return;
+        }
+        
+        // Solo inicializar si está autenticado
+        this.initParticles();
+        this.initToggles();
+        this.initDataStream();
+        await this.loadDashboardData();
+        await this.systemMonitor.init();
+        this.initialized = true;
+        
+        console.log('✅ Dashboard inicializado correctamente');
+    }
+
+    initParticles() {
+        // Crear partículas para el header
+        const container = document.querySelector('.dashboard-particles');
+        for (let i = 0; i < 20; i++) {
+            const particle = document.createElement('div');
+            particle.className = 'dashboard-particle';
+            particle.style.left = `${Math.random() * 100}%`;
+            particle.style.animationDelay = `${Math.random() * 2}s`;
+            particle.style.animationDuration = `${3 + Math.random() * 2}s`;
+            container.appendChild(particle);
+        }
+    }
+
+    initToggles() {
+        // Configurar toggles de accesibilidad
+        this.setupAccessibilityControls();
+    }
+
+    initDataStream() {
+        // Animación continua del datastream
+        const streamLines = document.querySelectorAll('.stream-line');
+        streamLines.forEach((line, index) => {
+            line.style.animationDelay = `${index * 0.5}s`;
+        });
+    }
+
+    async loadDashboardData() {
+        try {
+            await Promise.all([
+                this.loadRecentChats(),
+                this.loadUpcomingReminders()
+            ]);
+        } catch (error) {
+            console.error('Error loading dashboard data:', error);
+        }
+    }
+
+    async loadRecentChats() {
+        try {
+            const response = await fetch('/api/chat/history?limit=3', {
+                credentials: 'include'
+            });
+            
+            if (!response.ok) {
+                if (response.status === 401) {
+                    console.log('Sesión expirada, redirigiendo...');
+                    window.location.href = '/login';
+                    return;
+                }
+                throw new Error('Network error');
+            }
+            
+            const data = await response.json();
+            const container = document.getElementById('recent-chats');
+            
+            if (data.conversations?.length > 0) {
+                container.innerHTML = data.conversations.map(conv => `
+                    <div class="data-item">
+                        <div class="data-pulse"></div>
+                        <div class="data-content">
+                            <p>${this.escapeHtml(conv.user_message.substring(0, 60))}${conv.user_message.length > 60 ? '...' : ''}</p>
+                            <small>${new Date(conv.timestamp).toLocaleDateString()}</small>
+                        </div>
+                    </div>
+                `).join('');
+            } else {
+                container.innerHTML = `
+                    <div class="data-item">
+                        <div class="data-pulse"></div>
+                        <div class="data-content">
+                            <p>No hay conversaciones recientes</p>
+                            <small>Inicia una conversación con Chipi</small>
+                        </div>
+                    </div>
+                `;
+            }
+        } catch (error) {
+            console.error('Error loading chats:', error);
+            const container = document.getElementById('recent-chats');
+            container.innerHTML = `
+                <div class="data-item">
+                    <div class="data-pulse"></div>
+                    <div class="data-content">
+                        <p>Error al cargar conversaciones</p>
+                        <small>Intenta recargar la página</small>
+                    </div>
+                </div>
+            `;
+        }
+    }
+
+    async loadUpcomingReminders() {
+        try {
+            const response = await fetch('/api/reminders', {
+                credentials: 'include'
+            });
+            
+            if (!response.ok) {
+                if (response.status === 401) {
+                    console.log('Sesión expirada, redirigiendo...');
+                    window.location.href = '/login';
+                    return;
+                }
+                throw new Error('Network error');
+            }
+            
+            const data = await response.json();
+            const container = document.getElementById('upcoming-reminders');
+            
+            if (data.reminders?.length > 0) {
+                const upcoming = data.reminders.slice(0, 3);
+                container.innerHTML = upcoming.map(reminder => `
+                    <div class="data-item">
+                        <div class="data-pulse"></div>
+                        <div class="data-content">
+                            <p><strong>${reminder.time}</strong>: ${this.escapeHtml(reminder.text)}</p>
+                        </div>
+                    </div>
+                `).join('');
+            } else {
+                container.innerHTML = `
+                    <div class="data-item">
+                        <div class="data-pulse"></div>
+                        <div class="data-content">
+                            <p>No hay recordatorios próximos</p>
+                            <small>Crea recordatorios para mantenerte organizado</small>
+                        </div>
+                    </div>
+                `;
+            }
+        } catch (error) {
+            console.error('Error loading reminders:', error);
+            const container = document.getElementById('upcoming-reminders');
+            container.innerHTML = `
+                <div class="data-item">
+                    <div class="data-pulse"></div>
+                    <div class="data-content">
+                        <p>Error al cargar recordatorios</p>
+                        <small>Intenta recargar la página</small>
+                    </div>
+                </div>
+            `;
+        }
+    }
+
+    escapeHtml(text) {
+        const div = document.createElement('div');
+        div.textContent = text;
+        return div.innerHTML;
+    }
+
+    // Configuración de accesibilidad (compatible con base) - CORREGIDA
+    setupAccessibilityControls() {
+        const fontSizeToggle = document.getElementById('font-size-toggle');
+        const contrastToggle = document.getElementById('contrast-toggle');
+        const voiceToggle = document.getElementById('voice-toggle');
+        
+        // Cargar estados guardados
+        const largeTextEnabled = localStorage.getItem('largeTextEnabled') === 'true';
+        const highContrastEnabled = localStorage.getItem('highContrastEnabled') === 'true';
+        const voiceEnabled = localStorage.getItem('voiceEnabled') === 'true';
+        
+        // Aplicar estados guardados
+        if (largeTextEnabled) {
+            document.body.classList.add('large-text');
+            fontSizeToggle.setAttribute('data-state', 'on');
+        }
+        
+        if (highContrastEnabled) {
+            document.body.classList.add('high-contrast');
+            contrastToggle.setAttribute('data-state', 'on');
+        }
+        
+        if (voiceEnabled) {
+            voiceToggle.setAttribute('data-state', 'on');
+        }
+        
+        // Configurar event listeners
+        if (fontSizeToggle) {
+            fontSizeToggle.addEventListener('click', () => {
+                const isActive = document.body.classList.toggle('large-text');
+                fontSizeToggle.setAttribute('data-state', isActive ? 'on' : 'off');
+                localStorage.setItem('largeTextEnabled', isActive);
+                
+                // Actualizar texto del botón
+                const label = fontSizeToggle.querySelector('.toggle-label');
+                label.innerHTML = `
+                    <i class="fas fa-text-height"></i>
+                    ${isActive ? 'Texto Normal' : 'Texto Grande'}
+                `;
+            });
+        }
+        
+        if (contrastToggle) {
+            contrastToggle.addEventListener('click', () => {
+                const isActive = document.body.classList.toggle('high-contrast');
+                contrastToggle.setAttribute('data-state', isActive ? 'on' : 'off');
+                localStorage.setItem('highContrastEnabled', isActive);
+                
+                // Actualizar texto del botón
+                const label = contrastToggle.querySelector('.toggle-label');
+                label.innerHTML = `
+                    <i class="fas fa-adjust"></i>
+                    ${isActive ? 'Contraste Normal' : 'Alto Contraste'}
+                `;
+            });
+        }
+        
+        if (voiceToggle) {
+            voiceToggle.addEventListener('click', () => {
+                const isActive = voiceToggle.getAttribute('data-state') === 'on';
+                const newState = !isActive;
+                
+                voiceToggle.setAttribute('data-state', newState ? 'on' : 'off');
+                localStorage.setItem('voiceEnabled', newState);
+                
+                // Actualizar texto del botón
+                const label = voiceToggle.querySelector('.toggle-label');
+                label.innerHTML = `
+                    <i class="fas fa-volume-up"></i>
+                    ${newState ? 'Desactivar Voz' : 'Activar Voz'}
+                `;
+                
+                // Mostrar notificación
+                if (newState) {
+                    this.showNotification('Voz activada. Chipi leerá los mensajes en voz alta.', 'success');
+                } else {
+                    this.showNotification('Voz desactivada.', 'info');
+                }
+            });
+        }
+    }
+
+    showNotification(message, type) {
+        const notification = document.createElement('div');
+        notification.className = `cyber-notification ${type}`;
+        notification.innerHTML = `
+            <div class="notification-content">
+                <i class="fas fa-${type === 'success' ? 'check-circle' : type === 'error' ? 'exclamation-circle' : 'info-circle'}"></i>
+                <span>${message}</span>
+            </div>
+        `;
+        
+        document.body.appendChild(notification);
+        
+        setTimeout(() => {
+            notification.classList.add('show');
+        }, 10);
+        
+        setTimeout(() => {
+            notification.classList.remove('show');
+            setTimeout(() => notification.remove(), 300);
+        }, 3000);
+    }
+}
+
+// Inicializar cuando el DOM esté listo
+document.addEventListener('DOMContentLoaded', async () => {
+    // Pequeño retraso para asegurar que las cookies estén establecidas
+    setTimeout(async () => {
+        window.dashboardEffects = new DashboardEffects();
+        await window.dashboardEffects.initialize();
+    }, 100);
+});
+</script>
+
+<style>
+/* Estilos específicos del dashboard cybernético */
+.cyber-dashboard {
+    padding: 2rem;
+    position: relative;
+    min-height: 100vh;
+}
+
+.dashboard-header {
+    position: relative;
+    margin-bottom: 3rem;
+    text-align: center;
+}
+
+.dashboard-particles {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+}
+
+.dashboard-particle {
+    position: absolute;
+    width: 4px;
+    height: 4px;
+    background: var(--cyber-primary);
+    border-radius: 50%;
+    opacity: 0.6;
+    animation: float-particle 4s ease-in-out infinite;
+}
+
+/* Efecto glitch para títulos */
+.glitch {
+    position: relative;
+    animation: glitch-effect 8s infinite;
+}
+
+.glitch::before,
+.glitch::after {
+    content: attr(data-text);
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 10%;
+    height: 10%;
+}
+
+.glitch::before {
+    animation: glitch-animation 0.9s cubic-bezier(0.25, 0.46, 0.45, 0.94) infinite;
+    color: var(--cyber-accent);
+    z-index: -1;
+}
+
+.glitch::after {
+    animation: glitch-animation 0.9s cubic-bezier(0.25, 0.46, 0.45, 0.94) reverse infinite;
+    color: var(--cyber-neon);
+    z-index: -2;
+}
+
+/* Grid cybernético */
+.cyber-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 1.5rem;
+    margin-top: 2rem;
+}
+
+/* Botones cybernéticos */
+.cyber-button {
+    position: relative;
+    display: block;
+    padding: 1.5rem;
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 15px;
+    text-decoration: none;
+    color: var(--cyber-text);
+    transition: all 0.3s ease;
+    overflow: hidden;
+}
+
+.cyber-button:hover {
+    transform: translateY(-5px) scale(1.02);
+    box-shadow: 0 10px 30px rgba(13, 139, 255, 0.3);
+}
+
+.cyber-button.primary {
+    background: linear-gradient(135deg, var(--cyber-primary), var(--cyber-accent));
+}
+
+.cyber-button.secondary {
+    background: rgba(26, 34, 54, 0.8);
+}
+
+.button-inner {
+    position: relative;
+    z-index: 2;
+    text-align: center;
+}
+
+.button-icon {
+    font-size: 2rem;
+    margin-bottom: 1rem;
+    color: white;
+}
+
+.button-text {
+    font-size: 1.1rem;
+    font-weight: 600;
+    display: block;
+}
+
+.button-glow {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 3px;
+    background: linear-gradient(90deg, transparent, white, transparent);
+    transform: translateX(-100%);
+    transition: transform 0.3s ease;
+}
+
+.cyber-button:hover .button-glow {
+    transform: translateX(100%);
+}
+
+/* Terminal style */
+.terminal {
+    background: rgba(10, 14, 23, 0.9) !important;
+    border: 1px solid var(--cyber-neon) !important;
+    font-family: 'Courier New', monospace;
+}
+
+.terminal-header {
+    display: flex;
+    align-items: center;
+    padding: 1rem;
+    background: rgba(0, 0, 0, 0.3);
+    border-bottom: 1px solid var(--cyber-neon);
+}
+
+.terminal-dots {
+    display: flex;
+    gap: 0.5rem;
+    margin-right: 1rem;
+}
+
+.terminal-dots .dot {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+}
+
+.terminal-dots .red { background: #ff5f57; }
+.terminal-dots .yellow { background: #ffbd2e; }
+.terminal-dots .green { background: #28ca42; }
+
+.terminal-title {
+    color: var(--cyber-neon);
+    font-weight: 600;
+}
+
+/* Toggles cybernéticos */
+.accessibility-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 1.5rem;
+    padding: 2rem;
+}
+
+.cyber-toggle {
+    position: relative;
+    display: flex;
+    align-items: center;
+    padding: 1rem;
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 10px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.cyber-toggle:hover {
+    background: rgba(255, 255, 255, 0.1);
+}
+
+.toggle-track {
+    width: 50px;
+    height: 24px;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 12px;
+    margin-right: 1rem;
+    position: relative;
+    transition: all 0.3s ease;
+}
+
+.toggle-thumb {
+    position: absolute;
+    top: 2px;
+    left: 2px;
+    width: 20px;
+    height: 20px;
+    background: var(--cyber-text-secondary);
+    border-radius: 50%;
+    transition: all 0.3s ease;
+}
+
+.cyber-toggle[data-state="on"] .toggle-thumb {
+    left: 28px;
+    background: var(--cyber-primary);
+}
+
+.toggle-label {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-weight: 500;
+}
+
+/* Datastream effects */
+.datastream {
+    position: relative;
+    overflow: hidden;
+}
+
+.datastream-header {
+    display: flex;
+    justify-content: between;
+    align-items: center;
+    margin-bottom: 2rem;
+}
+
+.datastream-live {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    color: var(--cyber-accent);
+    font-size: 0.9rem;
+    font-weight: 600;
+}
+
+.live-indicator {
+    width: 8px;
+    height: 8px;
+    background: var(--cyber-accent);
+    border-radius: 50%;
+    animation: pulse 1s ease-in-out infinite;
+}
+
+.datastream-content {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+}
+
+.datastream-effect {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    opacity: 0.1;
+}
+
+.stream-line {
+    position: absolute;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, var(--cyber-primary), transparent);
+    animation: stream-flow 3s linear infinite;
+}
+
+/* Data items */
+.data-feed {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.data-item {
+    display: flex;
+    align-items: center;
+    padding: 1rem;
+    background: rgba(255, 255, 255, 0.03);
+    border-radius: 8px;
+    border-left: 3px solid var(--cyber-primary);
+}
+
+.data-pulse {
+    width: 8px;
+    height: 8px;
+    background: var(--cyber-primary);
+    border-radius: 50%;
+    margin-right: 1rem;
+    animation: pulse 2s ease-in-out infinite;
+}
+
+.data-content {
+    flex: 1;
+}
+
+/* Status grid */
+.status-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    gap: 1.5rem;
+}
+
+.status-item {
+    display: flex;
+    align-items: center;
+    padding: 1rem;
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 10px;
+}
+
+.status-icon {
+    width: 40px;
+    height: 40px;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-right: 1rem;
+    font-size: 1.2rem;
+}
+
+.status-icon.security { background: rgba(13, 139, 255, 0.2); color: var(--cyber-primary); }
+.status-icon.connection { background: rgba(0, 200, 150, 0.2); color: var(--cyber-accent); }
+.status-icon.battery { background: rgba(126, 87, 194, 0.2); color: var(--cyber-neon); }
+
+.status-info {
+    display: flex;
+    flex-direction: column;
+}
+
+.status-label {
+    font-size: 0.9rem;
+    color: var(--cyber-text-secondary);
+}
+
+.status-value {
+    font-weight: 600;
+    font-size: 1.1rem;
+}
+
+.status-value.active { color: var(--cyber-accent); }
+.status-value.stable { color: var(--cyber-primary); }
+
+/* Animations */
+@keyframes float-particle {
+    0%, 100% { transform: translateY(0) rotate(0deg); opacity: 0; }
+    50% { opacity: 1; }
+    100% { transform: translateY(-100px) rotate(360deg); }
+}
+
+@keyframes glitch-effect {
+    0% { transform: translate(0); }
+    20% { transform: translate(-2px, 2px); }
+    40% { transform: translate(-2px, -2px); }
+    60% { transform: translate(2px, 2px); }
+    80% { transform: translate(2px, -2px); }
+    100% { transform: translate(0); }
+}
+
+@keyframes glitch-animation {
+    0% { clip-path: inset(0 0 0 0); }
+    20% { clip-path: inset(20% 0 5% 0); }
+    40% { clip-path: inset(80% 0 5% 0); }
+    60% { clip-path: inset(40% 0 30% 0); }
+    80% { clip-path: inset(60% 0 10% 0); }
+    100% { clip-path: inset(0 0 0 0); }
+}
+
+@keyframes stream-flow {
+    0% { transform: translateX(-100%); }
+    100% { transform: translateX(100%); }
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+    .cyber-dashboard {
+        padding: 1rem;
+    }
+    
+    .cyber-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .accessibility-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .datastream-content {
+        grid-template-columns: 1fr;
+    }
+    
+    .status-grid {
+        grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+    }
+}
+
+@media (max-width: 480px) {
+    .cyber-button {
+        padding: 1rem;
+    }
+    
+    .button-icon {
+        font-size: 1.5rem;
+    }
+    
+    .button-text {
+        font-size: 1rem;
+    }
+}
+
+/* Estilos de accesibilidad - NUEVOS */
+body.large-text {
+    font-size: 18px;
+}
+
+body.large-text .cyber-button,
+body.large-text .cyber-input,
+body.large-text .cyber-toggle {
+    font-size: 18px;
+}
+
+body.high-contrast {
+    --cyber-primary: #00ffff;
+    --cyber-accent: #ffff00;
+    --cyber-text: #ffffff;
+    --cyber-text-secondary: #cccccc;
+    --cyber-dark: #000000;
+    --cyber-darker: #000000;
+    --cyber-light: #111111;
+}
+
+body.high-contrast .cyber-card {
+    background: rgba(0, 0, 0, 0.9);
+    border: 2px solid var(--cyber-primary);
+}
+
+body.high-contrast .cyber-button {
+    border: 2px solid var(--cyber-primary);
+}
+
+/* Notificaciones */
+.cyber-notification {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    padding: 1rem 1.5rem;
+    border-radius: 8px;
+    z-index: 10000;
+    opacity: 0;
+    transform: translateY(-20px);
+    transition: all 0.3s ease;
+    max-width: 350px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+}
+
+.cyber-notification.show {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.cyber-notification.success {
+    background: var(--success-color);
+    color: white;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.cyber-notification.error {
+    background: var(--error-color);
+    color: white;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.cyber-notification.info {
+    background: var(--info-color);
+    color: white;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.notification-content {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+}
+
+.notification-content i {
+    font-size: 1.2rem;
+}
+</style>
+{% endblock %}

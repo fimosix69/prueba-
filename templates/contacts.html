@@ -1,0 +1,1401 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="cyber-network-container">
+    <!-- Header con visualización de red neural -->
+    <div class="network-header">
+        <div class="neural-visualization">
+            <div class="neural-node main-node">
+                <i class="fas fa-user"></i>
+                <div class="node-pulse"></div>
+            </div>
+            <div class="neural-connections">
+                <div class="connection-line"></div>
+                <div class="connection-line"></div>
+                <div class="connection-line"></div>
+            </div>
+        </div>
+        
+        <h2 class="cyber-title glitch" data-text="RED DE EMERGENCIA">
+            <i class="fas fa-network-wired"></i>
+            RED  DE  EMERGENCIA
+        </h2>
+        
+        <div class="network-status">
+            <span class="status-indicator"></span>
+            <span>CONEXIÓN SEGURA ACTIVA</span>
+        </div>
+    </div>
+
+    <!-- Panel de agregar contacto mejorado -->
+    <div class="cyber-card network-section">
+        <div class="section-header">
+            <h3 class="section-title">
+                <i class="fas fa-plus-hexagon"></i>
+                AGREGAR NODO DE CONTACTO
+            </h3>
+            <div class="section-ornament"></div>
+        </div>
+        
+        <form id="add-contact-form" class="cyber-form">
+            <div class="form-tabs">
+                <button type="button" class="tab-link active" data-tab="basic-info">Información Básica</button>
+                <button type="button" class="tab-link" data-tab="social-info">Redes Sociales</button>
+                <button type="button" class="tab-link" data-tab="additional-info">Información Adicional</button>
+            </div>
+
+            <div class="tab-content active" id="basic-info">
+                <div class="form-grid">
+                    <div class="form-group">
+                        <label class="form-label">
+                            <i class="fas fa-id-card"></i>
+                            IDENTIDAD
+                        </label>
+                        <div class="input-wrapper">
+                            <input type="text" id="contact-name" class="cyber-input" placeholder="Nombre del contacto" required>
+                            <div class="input-underline"></div>
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label class="form-label">
+                            <i class="fas fa-signal"></i>
+                            FRECUENCIA
+                        </label>
+                        <div class="input-wrapper">
+                            <input type="tel" id="contact-phone" class="cyber-input" placeholder="3001234567" required pattern="[0-9]{10}">
+                            <div class="input-underline"></div>
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label class="form-label">
+                            <i class="fas fa-link"></i>
+                            VÍNCULO
+                        </label>
+                        <div class="input-wrapper">
+                            <input type="text" id="contact-relationship" class="cyber-input" placeholder="Ej: Hijo, Vecino, Médico">
+                            <div class="input-underline"></div>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label">
+                            <i class="fas fa-envelope"></i>
+                            CORREO ELECTRÓNICO
+                        </label>
+                        <div class="input-wrapper">
+                            <input type="email" id="contact-email" class="cyber-input" placeholder="contacto@ejemplo.com">
+                            <div class="input-underline"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="tab-content" id="social-info">
+                <div class="form-grid">
+                    <div class="form-group">
+                        <label class="form-label">
+                            <i class="fab fa-whatsapp"></i>
+                            WHATSAPP
+                        </label>
+                        <div class="input-wrapper">
+                            <input type="tel" id="contact-whatsapp" class="cyber-input" placeholder="3001234567">
+                            <div class="input-underline"></div>
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label class="form-label">
+                            <i class="fab fa-facebook"></i>
+                            FACEBOOK
+                        </label>
+                        <div class="input-wrapper">
+                            <input type="text" id="contact-facebook" class="cyber-input" placeholder="Usuario o enlace">
+                            <div class="input-underline"></div>
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label class="form-label">
+                            <i class="fab fa-instagram"></i>
+                            INSTAGRAM
+                        </label>
+                        <div class="input-wrapper">
+                            <input type="text" id="contact-instagram" class="cyber-input" placeholder="Usuario">
+                            <div class="input-underline"></div>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label">
+                            <i class="fab fa-twitter"></i>
+                            TWITTER
+                        </label>
+                        <div class="input-wrapper">
+                            <input type="text" id="contact-twitter" class="cyber-input" placeholder="Usuario">
+                            <div class="input-underline"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="tab-content" id="additional-info">
+                <div class="form-grid">
+                    <div class="form-group full-width">
+                        <label class="form-label">
+                            <i class="fas fa-map-marker-alt"></i>
+                            DIRECCIÓN
+                        </label>
+                        <div class="input-wrapper">
+                            <textarea id="contact-address" class="cyber-input" placeholder="Dirección completa" rows="2"></textarea>
+                            <div class="input-underline"></div>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label">
+                            <i class="fas fa-birthday-cake"></i>
+                            FECHA DE NACIMIENTO
+                        </label>
+                        <div class="input-wrapper">
+                            <input type="date" id="contact-birthday" class="cyber-input">
+                            <div class="input-underline"></div>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label">
+                            <i class="fas fa-sticky-note"></i>
+                            NOTAS
+                        </label>
+                        <div class="input-wrapper">
+                            <textarea id="contact-notes" class="cyber-input" placeholder="Notas adicionales" rows="3"></textarea>
+                            <div class="input-underline"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <button type="submit" class="cyber-button primary large">
+                <i class="fas fa-node"></i>
+                <span>CONECTAR NODO</span>
+                <div class="button-glow"></div>
+            </button>
+        </form>
+    </div>
+
+    <!-- Visualización de red de contactos -->
+    <div class="cyber-card network-visualization">
+        <div class="visualization-header">
+            <h3 class="section-title">
+                <i class="fas fa-project-diagram"></i>
+                TOPOLOGÍA DE RED
+            </h3>
+            <div class="visualization-controls">
+                <button class="view-toggle active" data-view="grid">
+                    <i class="fas fa-grid"></i>
+                </button>
+                <button class="view-toggle" data-view="network">
+                    <i class="fas fa-network-wired"></i>
+                </button>
+                <div class="search-box">
+                    <i class="fas fa-search"></i>
+                    <input type="text" id="contact-search" placeholder="Buscar contacto...">
+                </div>
+            </div>
+        </div>
+        
+        <div class="network-content">
+            <div id="contacts-network" class="contacts-network-view">
+                <!-- Vista de red gráfica se cargará aquí -->
+                <div class="network-canvas">
+                    <canvas id="network-canvas"></canvas>
+                </div>
+            </div>
+            
+            <div id="contacts-grid" class="contacts-grid-view">
+                <div id="contacts-list" class="contacts-grid">
+                    <!-- Contactos se cargarán aquí -->
+                    <div class="contact-skeleton">
+                        <div class="skeleton-avatar"></div>
+                        <div class="skeleton-content">
+                            <div class="skeleton-line"></div>
+                            <div class="skeleton-line short"></div>
+                        </div>
+                    </div>
+                    <div class="contact-skeleton">
+                        <div class="skeleton-avatar"></div>
+                        <div class="skeleton-content">
+                            <div class="skeleton-line"></div>
+                            <div class="skeleton-line short"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Panel de acciones rápidas mejorado -->
+    <div class="cyber-card emergency-panel">
+        <div class="panel-header">
+            <h3 class="section-title">
+                <i class="fas fa-bolt"></i>
+                PROTOCOLOS DE EMERGENCIA
+            </h3>
+        </div>
+        
+        <div class="emergency-actions">
+            <button class="emergency-btn call-all" data-action="call-all">
+                <div class="btn-icon">
+                    <i class="fas fa-phone"></i>
+                </div>
+                <span>LLAMAR A TODOS</span>
+                <div class="btn-glow"></div>
+            </button>
+            
+            <button class="emergency-btn message-all" data-action="message-all">
+                <div class="btn-icon">
+                    <i class="fas fa-sms"></i>
+                </div>
+                <span>MENSAJE MASIVO</span>
+                <div class="btn-glow"></div>
+            </button>
+            
+            <button class="emergency-btn alert-all" data-action="alert-all">
+                <div class="btn-icon">
+                    <i class="fas fa-bell"></i>
+                </div>
+                <span>ALERTA DE EMERGENCIA</span>
+                <div class="btn-glow"></div>
+            </button>
+
+            <button class="emergency-btn reminder-all" data-action="reminder-all">
+                <div class="btn-icon">
+                    <i class="fas fa-clock"></i>
+                </div>
+                <span>RECORDATORIO GRUPAL</span>
+                <div class="btn-glow"></div>
+            </button>
+        </div>
+    </div>
+
+    <!-- Modal de gestión de contactos mejorado -->
+    <div id="contact-modal" class="cyber-modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>GESTIÓN DE NODO</h3>
+                <span class="modal-close">&times;</span>
+            </div>
+            <div class="modal-body">
+                <div class="contact-modal-content">
+                    <div class="modal-avatar" id="modal-avatar">
+                        <span>US</span>
+                    </div>
+                    <div class="modal-info">
+                        <h4 id="modal-name"></h4>
+                        <p id="modal-phone" class="modal-phone"></p>
+                        <p id="modal-relationship" class="modal-relationship"></p>
+                        <p id="modal-email" class="modal-email" style="display: none;"></p>
+                        <p id="modal-whatsapp" class="modal-whatsapp" style="display: none;"></p>
+                        <p id="modal-facebook" class="modal-facebook" style="display: none;"></p>
+                        <p id="modal-instagram" class="modal-instagram" style="display: none;"></p>
+                        <p id="modal-twitter" class="modal-twitter" style="display: none;"></p>
+                        <p id="modal-address" class="modal-address" style="display: none;"></p>
+                        <p id="modal-birthday" class="modal-birthday" style="display: none;"></p>
+                        <p id="modal-notes" class="modal-notes" style="display: none;"></p>
+                    </div>
+                </div>
+                <div class="modal-social-actions" id="modal-social-actions" style="display: none;">
+                    <!-- Botones de redes sociales se insertarán aquí -->
+                </div>
+                <div class="modal-actions">
+                    <button class="modal-btn call-btn">
+                        <i class="fas fa-phone"></i>
+                        LLAMAR
+                    </button>
+                    <button class="modal-btn message-btn">
+                        <i class="fas fa-sms"></i>
+                        MENSAJE
+                    </button>
+                    <button class="modal-btn reminder-btn">
+                        <i class="fas fa-bell"></i>
+                        RECORDATORIO
+                    </button>
+                    <button class="modal-btn delete-btn">
+                        <i class="fas fa-trash"></i>
+                        ELIMINAR
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal para crear recordatorio asociado a contacto -->
+    <div id="reminder-modal" class="cyber-modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>CREAR RECORDATORIO ASOCIADO</h3>
+                <span class="modal-close">&times;</span>
+            </div>
+            <div class="modal-body">
+                <div class="reminder-contact-info">
+                    <div class="contact-avatar" id="reminder-contact-avatar">
+                        <span>C</span>
+                    </div>
+                    <div class="contact-details">
+                        <h4 id="reminder-contact-name"></h4>
+                        <p id="reminder-contact-relationship"></p>
+                    </div>
+                </div>
+                
+                <form id="contact-reminder-form" class="cyber-form">
+                    <div class="form-group">
+                        <label class="form-label">
+                            <i class="fas fa-comment-alt"></i>
+                            DESCRIPCIÓN DEL RECORDATORIO
+                        </label>
+                        <div class="input-wrapper">
+                            <input type="text" id="reminder-text" class="cyber-input" placeholder="Ej: Salir con [contacto], Llamar a [contacto]" required>
+                            <div class="input-underline"></div>
+                        </div>
+                    </div>
+                    
+                    <div class="form-grid">
+                        <div class="form-group">
+                            <label class="form-label">
+                                <i class="fas fa-calendar"></i>
+                                FECHA
+                            </label>
+                            <div class="input-wrapper">
+                                <input type="date" id="reminder-date" class="cyber-input" required>
+                                <div class="input-underline"></div>
+                            </div>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label class="form-label">
+                                <i class="fas fa-clock"></i>
+                                HORA
+                            </label>
+                            <div class="input-wrapper">
+                                <input type="time" id="reminder-time" class="cyber-input" required>
+                                <div class="input-underline"></div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label class="form-label">
+                            <i class="fas fa-sync-alt"></i>
+                            REPETIR
+                        </label>
+                        <div class="repetition-options">
+                            <label class="repetition-option">
+                                <input type="radio" name="reminder-repeat" value="once" checked>
+                                <span class="repetition-checkbox"></span>
+                                <span>Una vez</span>
+                            </label>
+                            <label class="repetition-option">
+                                <input type="radio" name="reminder-repeat" value="daily">
+                                <span class="repetition-checkbox"></span>
+                                <span>Diario</span>
+                            </label>
+                            <label class="repetition-option">
+                                <input type="radio" name="reminder-repeat" value="weekly">
+                                <span class="repetition-checkbox"></span>
+                                <span>Semanal</span>
+                            </label>
+                        </div>
+                    </div>
+                    
+                    <button type="submit" class="cyber-button primary large">
+                        <i class="fas fa-bell"></i>
+                        <span>CREAR RECORDATORIO</span>
+                        <div class="button-glow"></div>
+                    </button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+class CyberNetwork {
+    constructor() {
+        this.form = document.getElementById('add-contact-form');
+        this.contactsList = document.getElementById('contacts-list');
+        this.networkCanvas = document.getElementById('network-canvas');
+        this.currentView = 'grid';
+        this.currentContactId = null;
+        
+        this.init();
+        this.loadContacts();
+        this.setupViewToggles();
+        this.setupTabs();
+        this.setupSearch();
+    }
+    
+    init() {
+        this.form.addEventListener('submit', async (e) => {
+            e.preventDefault();
+            await this.addContact();
+        });
+        
+        this.setupCanvas();
+        this.setupEmergencyActions();
+    }
+    
+    setupTabs() {
+        const tabLinks = document.querySelectorAll('.tab-link');
+        const tabContents = document.querySelectorAll('.tab-content');
+        
+        tabLinks.forEach(tab => {
+            tab.addEventListener('click', () => {
+                const tabId = tab.getAttribute('data-tab');
+                
+                // Remove active class from all tabs and contents
+                tabLinks.forEach(t => t.classList.remove('active'));
+                tabContents.forEach(c => c.classList.remove('active'));
+                
+                // Add active class to current tab and content
+                tab.classList.add('active');
+                document.getElementById(tabId).classList.add('active');
+            });
+        });
+    }
+    
+    setupSearch() {
+        const searchInput = document.getElementById('contact-search');
+        searchInput.addEventListener('input', (e) => {
+            const searchTerm = e.target.value.toLowerCase();
+            this.filterContacts(searchTerm);
+        });
+    }
+    
+    filterContacts(searchTerm) {
+        const contactNodes = document.querySelectorAll('.contact-node');
+        
+        contactNodes.forEach(node => {
+            const name = node.querySelector('.node-name').textContent.toLowerCase();
+            const phone = node.querySelector('.node-phone').textContent.toLowerCase();
+            const relationship = node.querySelector('.node-relationship')?.textContent.toLowerCase() || '';
+            
+            if (name.includes(searchTerm) || phone.includes(searchTerm) || relationship.includes(searchTerm)) {
+                node.style.display = 'flex';
+            } else {
+                node.style.display = 'none';
+            }
+        });
+    }
+    
+    async addContact() {
+        const name = document.getElementById('contact-name').value;
+        const phone = document.getElementById('contact-phone').value;
+        const relationship = document.getElementById('contact-relationship').value;
+        const email = document.getElementById('contact-email').value;
+        const whatsapp = document.getElementById('contact-whatsapp').value;
+        const facebook = document.getElementById('contact-facebook').value;
+        const instagram = document.getElementById('contact-instagram').value;
+        const twitter = document.getElementById('contact-twitter').value;
+        const address = document.getElementById('contact-address').value;
+        const birthday = document.getElementById('contact-birthday').value;
+        const notes = document.getElementById('contact-notes').value;
+        
+        const submitButton = this.form.querySelector('button[type="submit"]');
+        const originalText = submitButton.innerHTML;
+        
+        // Mostrar estado de carga
+        submitButton.innerHTML = '<i class="fas fa-spinner fa-spin"></i> CONECTANDO...';
+        submitButton.disabled = true;
+        
+        try {
+            const response = await fetch('/api/contacts', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({ 
+                    name, 
+                    phone, 
+                    relationship,
+                    email,
+                    whatsapp,
+                    facebook,
+                    instagram,
+                    twitter,
+                    address,
+                    birthday,
+                    notes
+                })
+            });
+            
+            const data = await response.json();
+            
+            if (response.ok) {
+                // Efecto de éxito
+                submitButton.innerHTML = '<i class="fas fa-check"></i> CONECTADO';
+                submitButton.classList.add('success');
+                
+                setTimeout(() => {
+                    submitButton.innerHTML = originalText;
+                    submitButton.disabled = false;
+                    submitButton.classList.remove('success');
+                }, 2000);
+                
+                this.form.reset();
+                this.loadContacts();
+                this.showNotification('Nodo de contacto agregado a la red', 'success');
+                
+                // Volver a la primera pestaña
+                document.querySelectorAll('.tab-link').forEach(tab => tab.classList.remove('active'));
+                document.querySelectorAll('.tab-content').forEach(content => content.classList.remove('active'));
+                document.querySelector('.tab-link').classList.add('active');
+                document.getElementById('basic-info').classList.add('active');
+            } else {
+                throw new Error(data.error || 'Error de conexión');
+            }
+        } catch (error) {
+            submitButton.innerHTML = originalText;
+            submitButton.disabled = false;
+            this.showNotification(error.message, 'error');
+        }
+    }
+    
+    async loadContacts() {
+        try {
+            const response = await fetch('/api/contacts');
+            const data = await response.json();
+            
+            if (data.contacts && data.contacts.length > 0) {
+                this.contactsList.innerHTML = data.contacts.map(contact => `
+                    <div class="contact-node" data-id="${contact.id}" 
+                         data-email="${this.escapeHtml(contact.email || '')}"
+                         data-whatsapp="${this.escapeHtml(contact.whatsapp || '')}"
+                         data-facebook="${this.escapeHtml(contact.facebook || '')}"
+                         data-instagram="${this.escapeHtml(contact.instagram || '')}"
+                         data-twitter="${this.escapeHtml(contact.twitter || '')}"
+                         data-address="${this.escapeHtml(contact.address || '')}"
+                         data-birthday="${this.escapeHtml(contact.birthday || '')}"
+                         data-notes="${this.escapeHtml(contact.notes || '')}">
+                        <div class="node-avatar" data-name="${this.escapeHtml(contact.name)}">
+                            ${this.getAvatarInitials(contact.name)}
+                        </div>
+                        <div class="node-info">
+                            <div class="node-name">${this.escapeHtml(contact.name)}</div>
+                            <div class="node-details">
+                                <span class="node-phone">
+                                    <i class="fas fa-phone"></i>
+                                    ${contact.phone}
+                                </span>
+                                ${contact.relationship ? `
+                                    <span class="node-relationship">
+                                        <i class="fas fa-link"></i>
+                                        ${this.escapeHtml(contact.relationship)}
+                                    </span>
+                                ` : ''}
+                                ${contact.email ? `
+                                    <span class="node-email">
+                                        <i class="fas fa-envelope"></i>
+                                        ${this.escapeHtml(contact.email)}
+                                    </span>
+                                ` : ''}
+                            </div>
+                        </div>
+                        <div class="node-actions">
+                            <button class="node-action call-node" data-phone="${contact.phone}">
+                                <i class="fas fa-phone"></i>
+                            </button>
+                            <button class="node-action message-node" data-phone="${contact.phone}">
+                                <i class="fas fa-sms"></i>
+                            </button>
+                        </div>
+                    </div>
+                `).join('');
+                
+                this.addContactEventListeners();
+                this.updateNetworkVisualization(data.contacts);
+            } else {
+                this.contactsList.innerHTML = `
+                    <div class="empty-network">
+                        <div class="empty-icon">
+                            <i class="fas fa-users-slash"></i>
+                        </div>
+                        <h4>RED VACÍA</h4>
+                        <p>No hay nodos de contacto en la red. Agrega tu primer contacto.</p>
+                    </div>
+                `;
+            }
+        } catch (error) {
+            this.contactsList.innerHTML = `
+                <div class="error-state">
+                    <div class="error-icon">
+                        <i class="fas fa-exclamation-triangle"></i>
+                    </div>
+                    <h4>ERROR DE CONEXIÓN</h4>
+                    <p>No se pudo acceder a la red de contactos.</p>
+                    <button class="cyber-button" onclick="location.reload()">
+                        <i class="fas fa-redo"></i>
+                        RECONECTAR
+                    </button>
+                </div>
+            `;
+        }
+    }
+    
+    addContactEventListeners() {
+        document.querySelectorAll('.contact-node').forEach(node => {
+            node.addEventListener('click', (e) => {
+                if (!e.target.closest('.node-action')) {
+                    this.showContactModal(node);
+                }
+            });
+        });
+        
+        document.querySelectorAll('.call-node').forEach(btn => {
+            btn.addEventListener('click', (e) => {
+                e.stopPropagation();
+                const phone = btn.getAttribute('data-phone');
+                window.location.href = `tel:${phone}`;
+            });
+        });
+        
+        document.querySelectorAll('.message-node').forEach(btn => {
+            btn.addEventListener('click', (e) => {
+                e.stopPropagation();
+                const phone = btn.getAttribute('data-phone');
+                window.location.href = `sms:${phone}`;
+            });
+        });
+    }
+    
+    showContactModal(node) {
+        const modal = document.getElementById('contact-modal');
+        const contactId = node.getAttribute('data-id');
+        const name = node.querySelector('.node-name').textContent;
+        const phone = node.querySelector('.node-phone').textContent;
+        const relationship = node.querySelector('.node-relationship')?.textContent || 'Sin relación definida';
+        const avatar = node.querySelector('.node-avatar').textContent;
+        
+        // Obtener datos adicionales
+        const email = node.getAttribute('data-email');
+        const whatsapp = node.getAttribute('data-whatsapp');
+        const facebook = node.getAttribute('data-facebook');
+        const instagram = node.getAttribute('data-instagram');
+        const twitter = node.getAttribute('data-twitter');
+        const address = node.getAttribute('data-address');
+        const birthday = node.getAttribute('data-birthday');
+        const notes = node.getAttribute('data-notes');
+        
+        document.getElementById('modal-avatar').textContent = avatar;
+        document.getElementById('modal-name').textContent = name;
+        document.getElementById('modal-phone').textContent = `Teléfono: ${phone}`;
+        document.getElementById('modal-relationship').textContent = `Relación: ${relationship}`;
+        
+        // Mostrar email si existe
+        const modalEmail = document.getElementById('modal-email');
+        if (email) {
+            modalEmail.textContent = `Email: ${email}`;
+            modalEmail.style.display = 'block';
+        } else {
+            modalEmail.style.display = 'none';
+        }
+        
+        // Mostrar WhatsApp si existe
+        const modalWhatsapp = document.getElementById('modal-whatsapp');
+        if (whatsapp) {
+            modalWhatsapp.textContent = `WhatsApp: ${whatsapp}`;
+            modalWhatsapp.style.display = 'block';
+        } else {
+            modalWhatsapp.style.display = 'none';
+        }
+        
+        // Mostrar Facebook si existe
+        const modalFacebook = document.getElementById('modal-facebook');
+        if (facebook) {
+            modalFacebook.textContent = `Facebook: ${facebook}`;
+            modalFacebook.style.display = 'block';
+        } else {
+            modalFacebook.style.display = 'none';
+        }
+        
+        // Mostrar Instagram si existe
+        const modalInstagram = document.getElementById('modal-instagram');
+        if (instagram) {
+            modalInstagram.textContent = `Instagram: ${instagram}`;
+            modalInstagram.style.display = 'block';
+        } else {
+            modalInstagram.style.display = 'none';
+        }
+        
+        // Mostrar Twitter si existe
+        const modalTwitter = document.getElementById('modal-twitter');
+        if (twitter) {
+            modalTwitter.textContent = `Twitter: ${twitter}`;
+            modalTwitter.style.display = 'block';
+        } else {
+            modalTwitter.style.display = 'none';
+        }
+        
+        // Mostrar dirección si existe
+        const modalAddress = document.getElementById('modal-address');
+        if (address) {
+            modalAddress.textContent = `Dirección: ${address}`;
+            modalAddress.style.display = 'block';
+        } else {
+            modalAddress.style.display = 'none';
+        }
+        
+        // Mostrar cumpleaños si existe
+        const modalBirthday = document.getElementById('modal-birthday');
+        if (birthday) {
+            const birthdayDate = new Date(birthday);
+            modalBirthday.textContent = `Cumpleaños: ${birthdayDate.toLocaleDateString()}`;
+            modalBirthday.style.display = 'block';
+        } else {
+            modalBirthday.style.display = 'none';
+        }
+        
+        // Mostrar notas si existen
+        const modalNotes = document.getElementById('modal-notes');
+        if (notes) {
+            modalNotes.textContent = `Notas: ${notes}`;
+            modalNotes.style.display = 'block';
+        } else {
+            modalNotes.style.display = 'none';
+        }
+        
+        // Configurar acciones de redes sociales
+        this.setupSocialActions(whatsapp, facebook, instagram, twitter);
+        
+        // Configurar acciones del modal
+        const callBtn = document.querySelector('.call-btn');
+        const messageBtn = document.querySelector('.message-btn');
+        const reminderBtn = document.querySelector('.reminder-btn');
+        const deleteBtn = document.querySelector('.delete-btn');
+        
+        callBtn.onclick = () => window.location.href = `tel:${phone}`;
+        messageBtn.onclick = () => window.location.href = `sms:${phone}`;
+        reminderBtn.onclick = () => this.showReminderModal(contactId, name, relationship, avatar);
+        deleteBtn.onclick = () => this.deleteContact(contactId);
+        
+        modal.style.display = 'block';
+    }
+    
+    setupSocialActions(whatsapp, facebook, instagram, twitter) {
+        const socialActions = document.getElementById('modal-social-actions');
+        socialActions.innerHTML = '';
+        
+        if (whatsapp || facebook || instagram || twitter) {
+            socialActions.style.display = 'flex';
+            
+            if (whatsapp) {
+                socialActions.innerHTML += `
+                    <a href="https://wa.me/${whatsapp}" target="_blank" class="social-btn whatsapp-btn">
+                        <i class="fab fa-whatsapp"></i>
+                    </a>
+                `;
+            }
+            
+            if (facebook) {
+                const facebookUrl = facebook.includes('http') ? facebook : `https://facebook.com/${facebook}`;
+                socialActions.innerHTML += `
+                    <a href="${facebookUrl}" target="_blank" class="social-btn facebook-btn">
+                        <i class="fab fa-facebook"></i>
+                    </a>
+                `;
+            }
+            
+            if (instagram) {
+                socialActions.innerHTML += `
+                    <a href="https://instagram.com/${instagram}" target="_blank" class="social-btn instagram-btn">
+                        <i class="fab fa-instagram"></i>
+                    </a>
+                `;
+            }
+            
+            if (twitter) {
+                socialActions.innerHTML += `
+                    <a href="https://twitter.com/${twitter}" target="_blank" class="social-btn twitter-btn">
+                        <i class="fab fa-twitter"></i>
+                    </a>
+                `;
+            }
+        } else {
+            socialActions.style.display = 'none';
+        }
+    }
+    
+    showReminderModal(contactId, contactName, relationship, avatar) {
+        this.currentContactId = contactId;
+        const modal = document.getElementById('reminder-modal');
+        
+        document.getElementById('reminder-contact-avatar').textContent = avatar;
+        document.getElementById('reminder-contact-name').textContent = contactName;
+        document.getElementById('reminder-contact-relationship').textContent = relationship;
+        
+        // Prellenar el campo de texto con el nombre del contacto
+        document.getElementById('reminder-text').value = `Reunión con ${contactName}`;
+        
+        // Establecer la fecha mínima como hoy
+        const today = new Date().toISOString().split('T')[0];
+        document.getElementById('reminder-date').min = today;
+        
+        // Establecer la hora actual por defecto
+        const now = new Date();
+        const hours = String(now.getHours()).padStart(2, '0');
+        const minutes = String(now.getMinutes()).padStart(2, '0');
+        document.getElementById('reminder-time').value = `${hours}:${minutes}`;
+        
+        modal.style.display = 'block';
+        
+        // Configurar el formulario de recordatorio
+        document.getElementById('contact-reminder-form').onsubmit = (e) => {
+            e.preventDefault();
+            this.createReminderForContact();
+        };
+    }
+    
+    async createReminderForContact() {
+        const text = document.getElementById('reminder-text').value;
+        const date = document.getElementById('reminder-date').value;
+        const time = document.getElementById('reminder-time').value;
+        const repetition = document.querySelector('input[name="reminder-repeat"]:checked').value;
+        
+        try {
+            const response = await fetch('/api/reminders', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({ 
+                    text, 
+                    date, 
+                    time,
+                    repetition,
+                    contact_id: this.currentContactId
+                })
+            });
+            
+            if (response.ok) {
+                this.hideReminderModal();
+                this.showNotification('Recordatorio creado exitosamente', 'success');
+            } else {
+                throw new Error('Error al crear el recordatorio');
+            }
+        } catch (error) {
+            this.showNotification(error.message, 'error');
+        }
+    }
+    
+    hideReminderModal() {
+        document.getElementById('reminder-modal').style.display = 'none';
+    }
+    
+    async deleteContact(contactId) {
+        if (confirm('¿Desconectar este nodo de la red?')) {
+            try {
+                const response = await fetch(`/api/contacts/${contactId}`, {
+                    method: 'DELETE'
+                });
+                
+                if (response.ok) {
+                    this.hideModal();
+                    this.loadContacts();
+                    this.showNotification('Nodo desconectado de la red', 'success');
+                }
+            } catch (error) {
+                this.showNotification('Error al desconectar el nodo', 'error');
+            }
+        }
+    }
+    
+    hideModal() {
+        document.getElementById('contact-modal').style.display = 'none';
+    }
+    
+    setupViewToggles() {
+        document.querySelectorAll('.view-toggle').forEach(toggle => {
+            toggle.addEventListener('click', () => {
+                const view = toggle.getAttribute('data-view');
+                this.switchView(view);
+                
+                document.querySelectorAll('.view-toggle').forEach(t => t.classList.remove('active'));
+                toggle.classList.add('active');
+            });
+        });
+    }
+    
+    switchView(view) {
+        this.currentView = view;
+        
+        if (view === 'network') {
+            document.getElementById('contacts-network').style.display = 'block';
+            document.getElementById('contacts-grid').style.display = 'none';
+            this.renderNetwork();
+        } else {
+            document.getElementById('contacts-network').style.display = 'none';
+            document.getElementById('contacts-grid').style.display = 'block';
+        }
+    }
+    
+    setupCanvas() {
+        this.canvas = this.networkCanvas;
+        this.ctx = this.canvas.getContext('2d');
+        
+        // Ajustar tamaño del canvas
+        this.resizeCanvas();
+        window.addEventListener('resize', () => this.resizeCanvas());
+    }
+    
+    resizeCanvas() {
+        this.canvas.width = this.canvas.parentElement.offsetWidth;
+        this.canvas.height = this.canvas.parentElement.offsetHeight;
+    }
+    
+    updateNetworkVisualization(contacts) {
+        if (this.currentView === 'network') {
+            this.renderNetwork();
+        }
+    }
+    
+    renderNetwork() {
+        const { width, height } = this.canvas;
+        this.ctx.clearRect(0, 0, width, height);
+        
+        // Dibujar red base
+        this.drawNetworkBase();
+        
+        // Aquí implementarías la visualización de la red con los contactos
+        // Esto es un placeholder para la visualización
+        this.drawNode(width / 2, height / 2, 'TÚ', true);
+        
+        // Dibujar contactos alrededor del nodo central
+        const contacts = document.querySelectorAll('.contact-node');
+        const angleStep = (2 * Math.PI) / contacts.length;
+        
+        contacts.forEach((contact, index) => {
+            const angle = angleStep * index;
+            const radius = Math.min(width, height) * 0.3;
+            const x = width / 2 + radius * Math.cos(angle);
+            const y = height / 2 + radius * Math.sin(angle);
+            
+            this.drawNode(x, y, contact.querySelector('.node-avatar').textContent, false);
+            this.drawConnection(width / 2, height / 2, x, y);
+        });
+    }
+    
+    drawNetworkBase() {
+        // Fondo de la red
+        this.ctx.fillStyle = 'rgba(10, 14, 23, 0.8)';
+        this.ctx.fillRect(0, 0, this.canvas.width, this.canvas.height);
+        
+        // Grid de la red
+        this.ctx.strokeStyle = 'rgba(13, 139, 255, 0.1)';
+        this.ctx.lineWidth = 1;
+        
+        const gridSize = 50;
+        for (let x = 0; x <= this.canvas.width; x += gridSize) {
+            this.ctx.beginPath();
+            this.ctx.moveTo(x, 0);
+            this.ctx.lineTo(x, this.canvas.height);
+            this.ctx.stroke();
+        }
+        
+        for (let y = 0; y <= this.canvas.height; y += gridSize) {
+            this.ctx.beginPath();
+            this.ctx.moveTo(0, y);
+            this.ctx.lineTo(this.canvas.width, y);
+            this.ctx.stroke();
+        }
+    }
+    
+    drawNode(x, y, text, isCenter) {
+        const radius = isCenter ? 30 : 20;
+        const color = isCenter ? '#0d8bff' : '#00c896';
+        
+        // Sombra
+        this.ctx.shadowColor = color;
+        this.ctx.shadowBlur = 15;
+        
+        // Círculo del nodo
+        this.ctx.fillStyle = color;
+        this.ctx.beginPath();
+        this.ctx.arc(x, y, radius, 0, 2 * Math.PI);
+        this.ctx.fill();
+        
+        // Resetear sombra
+        this.ctx.shadowColor = 'transparent';
+        this.ctx.shadowBlur = 0;
+        
+        // Texto
+        this.ctx.fillStyle = '#ffffff';
+        this.ctx.font = 'bold 14px Orbitron';
+        this.ctx.textAlign = 'center';
+        this.ctx.textBaseline = 'middle';
+        this.ctx.fillText(text, x, y);
+    }
+    
+    drawConnection(x1, y1, x2, y2) {
+        this.ctx.strokeStyle = 'rgba(13, 139, 255, 0.6)';
+        this.ctx.lineWidth = 2;
+        this.ctx.setLineDash([5, 5]);
+        
+        this.ctx.beginPath();
+        this.ctx.moveTo(x1, y1);
+        this.ctx.lineTo(x2, y2);
+        this.ctx.stroke();
+        
+        this.ctx.setLineDash([]);
+    }
+    
+    setupEmergencyActions() {
+        document.querySelectorAll('.emergency-btn').forEach(btn => {
+            btn.addEventListener('click', () => {
+                const action = btn.getAttribute('data-action');
+                this.handleEmergencyAction(action);
+            });
+        });
+    }
+    
+    handleEmergencyAction(action) {
+        switch (action) {
+            case 'call-all':
+                this.showNotification('Iniciando llamadas de emergencia', 'info');
+                break;
+            case 'message-all':
+                this.showNotification('Preparando mensaje masivo', 'info');
+                break;
+            case 'alert-all':
+                this.showNotification('Activando protocolo de emergencia', 'info');
+                break;
+            case 'reminder-all':
+                this.showGroupReminderModal();
+                break;
+        }
+    }
+    
+    showGroupReminderModal() {
+        // Aquí implementarías la lógica para crear recordatorios grupales
+        this.showNotification('Funcionalidad de recordatorio grupal activada', 'info');
+        // En una implementación completa, esto abriría un modal para crear un recordatorio para todos los contactos
+    }
+    
+    getAvatarInitials(name) {
+        const names = name.split(' ');
+        let initials = '';
+        
+        if (names.length === 1) {
+            initials = names[0].charAt(0);
+        } else {
+            initials = names[0].charAt(0) + names[names.length - 1].charAt(0);
+        }
+        
+        return initials.toUpperCase();
+    }
+    
+    showNotification(message, type) {
+        const notification = document.createElement('div');
+        notification.className = `cyber-notification ${type}`;
+        notification.innerHTML = `
+            <div class="notification-content">
+                <i class="fas fa-${type === 'success' ? 'check-circle' : 'exclamation-circle'}"></i>
+                <span>${message}</span>
+            </div>
+        `;
+        
+        document.body.appendChild(notification);
+        
+        setTimeout(() => {
+            notification.classList.add('show');
+        }, 10);
+        
+        setTimeout(() => {
+            notification.classList.remove('show');
+            setTimeout(() => notification.remove(), 300);
+        }, 3000);
+    }
+    
+    escapeHtml(text) {
+        const div = document.createElement('div');
+        div.textContent = text;
+        return div.innerHTML;
+    }
+}
+
+// Inicializar la red
+document.addEventListener('DOMContentLoaded', () => {
+    new CyberNetwork();
+    
+    // Cerrar modales
+    document.querySelectorAll('.modal-close').forEach(closeBtn => {
+        closeBtn.addEventListener('click', () => {
+            document.querySelectorAll('.cyber-modal').forEach(modal => {
+                modal.style.display = 'none';
+            });
+        });
+    });
+    
+    // Cerrar modal al hacer clic fuera del contenido
+    document.querySelectorAll('.cyber-modal').forEach(modal => {
+        modal.addEventListener('click', (e) => {
+            if (e.target === modal) {
+                modal.style.display = 'none';
+            }
+        });
+    });
+});
+</script>
+
+<style>
+/* Estilos específicos para la red de contactos - MEJORADOS */
+.cyber-network-container {
+    padding: 2rem;
+    max-width: 1400px;
+    margin: 0 auto;
+}
+
+/* Pestañas del formulario */
+.form-tabs {
+    display: flex;
+    margin-bottom: 1.5rem;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.tab-link {
+    padding: 0.75rem 1.5rem;
+    background: transparent;
+    border: none;
+    color: var(--cyber-text-secondary);
+    cursor: pointer;
+    position: relative;
+    font-weight: 600;
+    transition: all 0.3s ease;
+}
+
+.tab-link.active {
+    color: var(--cyber-primary);
+}
+
+.tab-link::after {
+    content: '';
+    position: absolute;
+    bottom: -1px;
+    left: 0;
+    width: 100%;
+    height: 2px;
+    background: var(--cyber-primary);
+    transform: scaleX(0);
+    transition: transform 0.3s ease;
+}
+
+.tab-link.active::after {
+    transform: scaleX(1);
+}
+
+.tab-content {
+    display: none;
+    animation: fadeIn 0.5s ease;
+}
+
+.tab-content.active {
+    display: block;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+.form-group.full-width {
+    grid-column: 1 / -1;
+}
+
+/* Buscador de contactos */
+.search-box {
+    position: relative;
+    display: flex;
+    align-items: center;
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 8px;
+    padding: 0.5rem 1rem;
+}
+
+.search-box i {
+    color: var(--cyber-text-secondary);
+    margin-right: 0.5rem;
+}
+
+.search-box input {
+    background: transparent;
+    border: none;
+    color: var(--cyber-text);
+    outline: none;
+    width: 100%;
+}
+
+/* Botones de redes sociales en el modal */
+.modal-social-actions {
+    display: flex;
+    justify-content: center;
+    gap: 0.5rem;
+    margin: 1rem 0;
+}
+
+.social-btn {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-size: 1.2rem;
+    transition: all 0.3s ease;
+}
+
+.social-btn:hover {
+    transform: scale(1.1);
+}
+
+.whatsapp-btn {
+    background: #25D366;
+}
+
+.facebook-btn {
+    background: #3b5998;
+}
+
+.instagram-btn {
+    background: linear-gradient(45deg, #f09433, #e6683c, #dc2743, #cc2366, #bc1888);
+}
+
+.twitter-btn {
+    background: #1DA1F2;
+}
+
+/* Información de contacto para recordatorio */
+.reminder-contact-info {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin-bottom: 1.5rem;
+    padding: 1rem;
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 10px;
+}
+
+.contact-avatar {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, var(--cyber-primary), var(--cyber-accent));
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-weight: bold;
+    font-size: 1.2rem;
+}
+
+.contact-details h4 {
+    color: var(--cyber-text);
+    margin-bottom: 0.3rem;
+}
+
+.contact-details p {
+    color: var(--cyber-text-secondary);
+    font-size: 0.9rem;
+}
+
+/* Opciones de repetición */
+.repetition-options {
+    display: flex;
+    gap: 1rem;
+    margin-top: 0.5rem;
+}
+
+.repetition-option {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    cursor: pointer;
+}
+
+.repetition-checkbox {
+    width: 18px;
+    height: 18px;
+    border: 2px solid var(--cyber-text-secondary);
+    border-radius: 50%;
+    position: relative;
+    transition: all 0.3s ease;
+}
+
+.repetition-option input[type="radio"] {
+    display: none;
+}
+
+.repetition-option input[type="radio"]:checked + .repetition-checkbox {
+    border-color: var(--cyber-primary);
+    background: var(--cyber-primary);
+}
+
+.repetition-option input[type="radio"]:checked + .repetition-checkbox::after {
+    content: "";
+    position: absolute;
+    top: 3px;
+    left: 3px;
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: white;
+}
+
+/* Botón de recordatorio grupal */
+.emergency-btn.reminder-all:hover {
+    background: linear-gradient(135deg, rgba(126, 87, 194, 0.2), rgba(126, 87, 194, 0.4));
+    border-color: var(--cyber-neon);
+}
+
+/* Mejoras responsive */
+@media (max-width: 768px) {
+    .form-tabs {
+        flex-direction: column;
+    }
+    
+    .tab-link {
+        padding: 1rem;
+        text-align: center;
+    }
+    
+    .repetition-options {
+        flex-direction: column;
+        gap: 0.5rem;
+    }
+    
+    .visualization-controls {
+        flex-direction: column;
+        gap: 1rem;
+    }
+    
+    .search-box {
+        width: 100%;
+    }
+}
+
+@media (max-width: 480px) {
+    .cyber-network-container {
+        padding: 1rem;
+    }
+    
+    .modal-actions {
+        grid-template-columns: 1fr;
+    }
+    
+    .emergency-actions {
+        grid-template-columns: 1fr;
+    }
+}
+</style>
+{% endblock %}

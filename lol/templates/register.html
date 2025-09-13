@@ -1,0 +1,1024 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="cyber-register-container">
+    <!-- Fondo de registro -->
+    <div class="security-background">
+        <div class="scan-line"></div>
+        <div class="security-grid"></div>
+    </div>
+
+    <!-- Tarjeta de registro -->
+    <div class="cyber-auth-card">
+        <!-- Logo -->
+        <div class="auth-logo">
+            <div class="logo-core">
+                <i class="fas fa-user-plus"></i>
+            </div>
+        </div>
+
+        <!-- Título -->
+        <h2 class="cyber-auth-title">
+            <i class="fas fa-id-card"></i>
+            CREAR CUENTA
+        </h2>
+
+        <p class="auth-subtitle">Registro de nueva cuenta</p>
+
+        <!-- Formulario de registro simplificado - CORREGIDO -->
+        <form id="register-form" class="cyber-auth-form" action="/register" method="POST">
+            <div class="input-group">
+                <label class="input-label">
+                    <i class="fas fa-mobile-alt"></i>
+                    NÚMERO DE TELÉFONO
+                </label>
+                <div class="input-field">
+                    <input type="tel" id="phone" name="phone" class="cyber-input" 
+                           placeholder="3001234567" 
+                           pattern="[0-9]{10}" 
+                           inputmode="numeric"
+                           required
+                           autocomplete="tel">
+                    <div class="input-underline"></div>
+                </div>
+                <div class="input-hint">Número de 10 dígitos que comienza con 3</div>
+            </div>
+
+            <div class="input-group">
+                <label class="input-label">
+                    <i class="fas fa-key"></i>
+                    CONTRASEÑA
+                </label>
+                <div class="input-field">
+                    <input type="password" id="password" name="password" class="cyber-input password-field" 
+                           placeholder="Crea tu contraseña" 
+                           required
+                           autocomplete="new-password"
+                           minlength="6">
+                    <div class="password-toggle" id="toggle-password">
+                        <i class="fas fa-eye"></i>
+                    </div>
+                    <div class="input-underline"></div>
+                </div>
+                <!-- Indicador de seguridad de contraseña -->
+                <div class="password-strength-indicator">
+                    <div class="strength-visual">
+                        <div class="strength-bar">
+                            <div class="strength-fill" id="password-strength-fill"></div>
+                        </div>
+                    </div>
+                    <div class="strength-text" id="password-strength-text">NIVEL DE SEGURIDAD</div>
+                </div>
+            </div>
+
+            <div class="input-group">
+                <label class="input-label">
+                    <i class="fas fa-key"></i>
+                    CONFIRMAR CONTRASEÑA
+                </label>
+                <div class="input-field">
+                    <input type="password" id="confirm-password" name="confirm_password" class="cyber-input" 
+                           placeholder="Repite tu contraseña" 
+                           required
+                           autocomplete="new-password">
+                    <div class="password-toggle" id="toggle-confirm-password">
+                        <i class="fas fa-eye"></i>
+                    </div>
+                    <div class="input-underline"></div>
+                </div>
+                <div class="match-indicator" id="password-match">
+                    <i class="fas fa-check"></i>
+                    <span>Las contraseñas coinciden</span>
+                </div>
+            </div>
+
+            <!-- Botón de registro -->
+            <button type="submit" class="cyber-button primary" id="submit-form">
+                <i class="fas fa-user-plus"></i>
+                CREAR CUENTA
+            </button>
+        </form>
+
+        <!-- Enlaces -->
+        <div class="auth-links">
+            <p>¿Ya tienes una cuenta?</p>
+            <a href="/" class="cyber-link">
+                <i class="fas fa-sign-in-alt"></i>
+                INICIAR SESIÓN
+            </a>
+        </div>
+    </div>
+</div>
+
+<style>
+/* Variables CSS */
+:root {
+    --cyber-primary: #0d8bff;
+    --cyber-accent: #00c896;
+    --cyber-dark: #1a2236;
+    --cyber-darker: #0f1419;
+    --cyber-text: #ffffff;
+    --cyber-text-secondary: #a0aec0;
+    --cyber-neon: #7e57c2;
+    --error-color: #f56565;
+    --success-color: #47d7ac;
+    --warning-color: #f6ad55;
+    --error-color-rgb: 245, 101, 101;
+    --success-color-rgb: 71, 215, 172;
+}
+
+/* Contenedor principal */
+.cyber-register-container {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 1rem;
+    position: relative;
+    overflow: hidden;
+    background: linear-gradient(135deg, var(--cyber-darker) 0%, var(--cyber-dark) 100%);
+}
+
+.security-background {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+    overflow: hidden;
+}
+
+.scan-line {
+    position: absolute;
+    top: -100%;
+    left: 0;
+    width: 100%;
+    height: 3px;
+    background: linear-gradient(90deg, transparent, var(--cyber-primary), transparent);
+    opacity: 0.7;
+    animation: scan 3s linear infinite;
+}
+
+.security-grid {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: 
+        linear-gradient(rgba(13, 139, 255, 0.1) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(13, 139, 255, 0.1) 1px, transparent 1px);
+    background-size: 20px 20px;
+    pointer-events: none;
+    opacity: 0.3;
+}
+
+.cyber-auth-card {
+    position: relative;
+    z-index: 2;
+    background: rgba(26, 34, 54, 0.95);
+    backdrop-filter: blur(20px);
+    border: 1px solid var(--cyber-primary);
+    border-radius: 20px;
+    padding: 2rem;
+    width: 100%;
+    max-width: 500px;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+    margin: 1rem;
+}
+
+@media (max-width: 768px) {
+    .cyber-auth-card {
+        padding: 1.5rem;
+        border-radius: 15px;
+        margin: 0.5rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .cyber-auth-card {
+        padding: 1.25rem;
+        border-radius: 12px;
+    }
+}
+
+.auth-logo {
+    text-align: center;
+    margin-bottom: 1.5rem;
+}
+
+@media (max-width: 768px) {
+    .auth-logo {
+        margin-bottom: 1.2rem;
+    }
+}
+
+.logo-core {
+    width: 70px;
+    height: 70px;
+    background: linear-gradient(135deg, var(--cyber-primary), var(--cyber-accent));
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto;
+    color: white;
+    font-size: 1.8rem;
+}
+
+@media (max-width: 768px) {
+    .logo-core {
+        width: 60px;
+        height: 60px;
+        font-size: 1.5rem;
+    }
+}
+
+.cyber-auth-title {
+    text-align: center;
+    font-family: 'Orbitron', monospace;
+    font-size: 1.6rem;
+    color: var(--cyber-primary);
+    margin-bottom: 0.5rem;
+    text-shadow: 0 0 10px rgba(13, 139, 255, 0.5);
+}
+
+@media (max-width: 768px) {
+    .cyber-auth-title {
+        font-size: 1.4rem;
+        margin-bottom: 0.4rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .cyber-auth-title {
+        font-size: 1.3rem;
+    }
+}
+
+.auth-subtitle {
+    text-align: center;
+    color: var(--cyber-text-secondary);
+    margin-bottom: 2rem;
+    font-size: 0.9rem;
+}
+
+@media (max-width: 768px) {
+    .auth-subtitle {
+        font-size: 0.85rem;
+        margin-bottom: 1.5rem;
+    }
+}
+
+.cyber-auth-form {
+    margin-bottom: 2rem;
+}
+
+@media (max-width: 768px) {
+    .cyber-auth-form {
+        margin-bottom: 1.5rem;
+    }
+}
+
+.input-group {
+    margin-bottom: 1.5rem;
+}
+
+@media (max-width: 768px) {
+    .input-group {
+        margin-bottom: 1.2rem;
+    }
+}
+
+.input-label {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    margin-bottom: 0.5rem;
+    color: var(--cyber-text);
+    font-weight: 600;
+    font-size: 0.9rem;
+}
+
+@media (max-width: 768px) {
+    .input-label {
+        font-size: 0.85rem;
+    }
+}
+
+.input-field {
+    position: relative;
+}
+
+.cyber-input {
+    width: 100%;
+    padding: 1rem;
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 10px;
+    color: var(--cyber-text);
+    font-family: 'Orbitron', monospace;
+    font-size: 1rem;
+    transition: all 0.3s ease;
+    min-height: 50px;
+    box-sizing: border-box;
+}
+
+@media (max-width: 768px) {
+    .cyber-input {
+        padding: 0.875rem;
+        font-size: 16px; /* Previene zoom en iOS */
+        min-height: 48px;
+    }
+}
+
+.cyber-input:focus {
+    outline: none;
+    border-color: var(--cyber-primary);
+    box-shadow: 0 0 20px rgba(13, 139, 255, 0.2);
+}
+
+.input-underline {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 2px;
+    background: linear-gradient(90deg, var(--cyber-primary), transparent);
+    transform: scaleX(0);
+    transition: transform 0.3s ease;
+}
+
+.cyber-input:focus ~ .input-underline {
+    transform: scaleX(1);
+}
+
+.input-hint {
+    font-size: 0.8rem;
+    color: var(--cyber-text-secondary);
+    margin-top: 0.5rem;
+}
+
+@media (max-width: 768px) {
+    .input-hint {
+        font-size: 0.75rem;
+    }
+}
+
+.password-toggle {
+    position: absolute;
+    right: 1rem;
+    top: 50%;
+    transform: translateY(-50%);
+    color: var(--cyber-text-secondary);
+    cursor: pointer;
+    transition: color 0.3s ease;
+    width: 24px;
+    height: 24px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+@media (max-width: 768px) {
+    .password-toggle {
+        right: 0.875rem;
+        width: 22px;
+        height: 22px;
+    }
+}
+
+.password-toggle:hover {
+    color: var(--cyber-primary);
+}
+
+/* Indicador de seguridad de contraseña */
+.password-strength-indicator {
+    margin-top: 0.5rem;
+}
+
+.strength-visual {
+    width: 100%;
+    height: 4px;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 2px;
+    overflow: hidden;
+    margin-bottom: 0.5rem;
+}
+
+.strength-bar {
+    height: 100%;
+    width: 100%;
+    position: relative;
+    border-radius: 2px;
+}
+
+.strength-fill {
+    height: 100%;
+    width: 0%;
+    border-radius: 2px;
+    transition: all 0.3s ease;
+    background: #f56565;
+}
+
+.strength-text {
+    font-size: 0.8rem;
+    color: var(--cyber-text-secondary);
+    text-align: center;
+    font-weight: 600;
+    transition: color 0.3s ease;
+}
+
+.match-indicator {
+    display: none;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 0.8rem;
+    margin-top: 0.5rem;
+    color: #47d7ac;
+}
+
+.match-indicator.error {
+    color: #f56565;
+}
+
+.match-indicator.error i {
+    content: '\f00d';
+}
+
+.cyber-button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    padding: 1rem 1.5rem;
+    width: 100%;
+    font-size: 1rem;
+    font-weight: 500;
+    text-decoration: none;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    min-height: 44px;
+    font-family: 'Orbitron', monospace;
+    margin-top: 1rem;
+}
+
+@media (max-width: 768px) {
+    .cyber-button {
+        padding: 0.875rem 1.25rem;
+    }
+}
+
+.cyber-button.primary {
+    background: linear-gradient(135deg, var(--cyber-primary), var(--cyber-accent));
+    color: white;
+}
+
+.cyber-button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+}
+
+@media (max-width: 768px) {
+    .cyber-button:hover {
+        transform: translateY(-1px);
+    }
+}
+
+/* Enlaces */
+.auth-links {
+    text-align: center;
+    margin: 2rem 0 0 0;
+}
+
+@media (max-width: 768px) {
+    .auth-links {
+        margin: 1.5rem 0 0 0;
+    }
+}
+
+.auth-links p {
+    color: var(--cyber-text-secondary);
+    margin-bottom: 1rem;
+    font-size: 0.95rem;
+}
+
+@media (max-width: 768px) {
+    .auth-links p {
+        font-size: 0.9rem;
+        margin-bottom: 0.8rem;
+    }
+}
+
+.cyber-link {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    color: var(--cyber-primary);
+    text-decoration: none;
+    font-weight: 600;
+    margin: 0.5rem 0;
+    transition: color 0.3s ease;
+    font-size: 0.95rem;
+    padding: 0.5rem;
+}
+
+@media (max-width: 768px) {
+    .cyber-link {
+        font-size: 0.9rem;
+        margin: 0.4rem 0;
+        padding: 0.4rem;
+    }
+}
+
+.cyber-link:hover {
+    color: var(--cyber-accent);
+}
+
+@keyframes scan {
+    0% { top: -100%; }
+    100% { top: 100%; }
+}
+
+/* Mensajes de error/éxito */
+.cyber-error-message,
+.cyber-success-message {
+    padding: 1rem;
+    border-radius: 8px;
+    margin-bottom: 1.5rem;
+    display: flex;
+    align-items: center;
+    gap: 0.8rem;
+    animation: slideDown 0.3s ease-out;
+    font-size: 0.9rem;
+}
+
+@media (max-width: 768px) {
+    .cyber-error-message,
+    .cyber-success-message {
+        padding: 0.8rem;
+        font-size: 0.85rem;
+        margin-bottom: 1.2rem;
+    }
+}
+
+.cyber-error-message {
+    background: rgba(245, 101, 101, 0.1);
+    border: 1px solid #f56565;
+    color: #f56565;
+}
+
+.cyber-success-message {
+    background: rgba(71, 215, 172, 0.1);
+    border: 1px solid #47d7ac;
+    color: #47d7ac;
+}
+
+@keyframes slideDown {
+    from {
+        opacity: 0;
+        transform: translateY(-10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Mejoras de accesibilidad para móviles */
+@media (max-width: 768px) {
+    input, button, textarea, select {
+        font-size: 16px !important;
+    }
+    
+    .cyber-button, .cyber-link, .password-toggle {
+        min-height: 44px;
+    }
+}
+
+/* Soporte para dispositivos muy pequeños */
+@media (max-width: 360px) {
+    .cyber-auth-card {
+        padding: 1rem;
+    }
+    
+    .cyber-auth-title {
+        font-size: 1.2rem;
+    }
+    
+    .auth-subtitle {
+        font-size: 0.8rem;
+    }
+    
+    .cyber-input {
+        padding: 0.75rem;
+    }
+    
+    .cyber-button {
+        padding: 0.875rem 1rem;
+    }
+}
+</style>
+
+<script>
+class SimplifiedRegister {
+    constructor() {
+        this.form = document.getElementById('register-form');
+        this.phoneInput = document.getElementById('phone');
+        this.passwordInput = document.getElementById('password');
+        this.confirmPasswordInput = document.getElementById('confirm-password');
+        this.submitBtn = document.getElementById('submit-form');
+        
+        this.init();
+        this.setupEventListeners();
+    }
+    
+    init() {
+        this.setupPasswordValidation();
+        this.setupMobileOptimizations();
+    }
+    
+    setupEventListeners() {
+        // Evento principal del formulario
+        this.form.addEventListener('submit', async (e) => {
+            e.preventDefault();
+            await this.handleRegister();
+        });
+        
+        // Validaciones en tiempo real
+        this.passwordInput.addEventListener('input', (e) => {
+            this.updatePasswordStrength(e.target.value);
+            this.checkPasswordMatch();
+        });
+        
+        this.confirmPasswordInput.addEventListener('input', () => {
+            this.checkPasswordMatch();
+        });
+        
+        this.phoneInput.addEventListener('input', (e) => {
+            this.validatePhoneNumber(e.target.value);
+        });
+        
+        // Toggle para mostrar/ocultar contraseña
+        const togglePassword = document.getElementById('toggle-password');
+        const toggleConfirmPassword = document.getElementById('toggle-confirm-password');
+        
+        if (togglePassword) {
+            togglePassword.addEventListener('click', () => {
+                this.togglePasswordVisibility(this.passwordInput, togglePassword);
+            });
+        }
+
+        if (toggleConfirmPassword) {
+            toggleConfirmPassword.addEventListener('click', () => {
+                this.togglePasswordVisibility(this.confirmPasswordInput, toggleConfirmPassword);
+            });
+        }
+        
+        // Optimizaciones móviles
+        this.setupMobileEventListeners();
+    }
+    
+    setupMobileOptimizations() {
+        if ('ontouchstart' in window || navigator.maxTouchPoints > 0) {
+            document.body.classList.add('touch-device');
+        }
+        
+        this.setupVirtualKeyboardHandling();
+    }
+    
+    setupMobileEventListeners() {
+        const inputs = [this.phoneInput, this.passwordInput, this.confirmPasswordInput];
+        
+        inputs.forEach(input => {
+            if (input) {
+                input.addEventListener('focus', this.preventZoom.bind(this));
+                input.addEventListener('blur', this.restoreZoom.bind(this));
+            }
+        });
+    }
+    
+    setupVirtualKeyboardHandling() {
+        const inputs = [this.phoneInput, this.passwordInput, this.confirmPasswordInput];
+        
+        inputs.forEach(input => {
+            if (input) {
+                input.addEventListener('focus', () => {
+                    setTimeout(() => {
+                        input.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                    }, 300);
+                });
+            }
+        });
+    }
+    
+    setupPasswordValidation() {
+        const strengthFill = document.getElementById('password-strength-fill');
+        const strengthText = document.getElementById('password-strength-text');
+        
+        if (strengthFill && strengthText) {
+            strengthFill.style.width = '0%';
+            strengthText.textContent = 'NIVEL DE SEGURIDAD';
+        }
+    }
+    
+    preventZoom() {
+        this.originalViewport = document.querySelector('meta[name="viewport"]')?.content;
+        
+        if (/iPad|iPhone|iPod/.test(navigator.userAgent)) {
+            const viewport = document.querySelector('meta[name="viewport"]');
+            if (viewport) {
+                viewport.content = 'width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no';
+            }
+        }
+    }
+    
+    restoreZoom() {
+        if (this.originalViewport) {
+            const viewport = document.querySelector('meta[name="viewport"]');
+            if (viewport) {
+                viewport.content = this.originalViewport;
+            }
+        }
+    }
+    
+    togglePasswordVisibility(inputField, toggleButton) {
+        const type = inputField.getAttribute('type') === 'password' ? 'text' : 'password';
+        inputField.setAttribute('type', type);
+        
+        const icon = toggleButton.querySelector('i');
+        if (icon) {
+            icon.className = type === 'password' ? 'fas fa-eye' : 'fas fa-eye-slash';
+        }
+    }
+    
+    validatePhoneNumber(phone) {
+        const cleanedPhone = phone.replace(/\D/g, '');
+        return cleanedPhone.length === 10 && cleanedPhone.startsWith('3');
+    }
+    
+    updatePasswordStrength(password) {
+        const result = this.checkPasswordStrength(password);
+        const strengthFill = document.getElementById('password-strength-fill');
+        const strengthText = document.getElementById('password-strength-text');
+        
+        if (strengthFill && strengthText) {
+            strengthFill.style.width = result.strength + '%';
+            
+            if (result.strength <= 30) {
+                strengthFill.style.background = '#f56565';
+                strengthText.style.color = '#f56565';
+            } else if (result.strength <= 60) {
+                strengthFill.style.background = '#f6ad55';
+                strengthText.style.color = '#f6ad55';
+            } else if (result.strength <= 80) {
+                strengthFill.style.background = '#0d8bff';
+                strengthText.style.color = '#0d8bff';
+            } else {
+                strengthFill.style.background = '#47d7ac';
+                strengthText.style.color = '#47d7ac';
+            }
+            
+            strengthText.textContent = result.message;
+        }
+    }
+    
+    checkPasswordStrength(password) {
+        let strength = 0;
+        let messages = [];
+
+        if (password.length === 0) {
+            return {
+                strength: 0,
+                message: "NIVEL DE SEGURIDAD"
+            };
+        }
+
+        if (password.length >= 12) strength += 25;
+        else if (password.length >= 8) strength += 15;
+        else if (password.length >= 6) strength += 5;
+        else messages.push("Muy corta");
+
+        if (/\d/.test(password)) strength += 15;
+        else messages.push("Incluye números");
+
+        if (/[a-z]/.test(password) && /[A-Z]/.test(password)) strength += 20;
+        else messages.push("Incluye mayúsculas y minúsculas");
+
+        if (/[^A-Za-z0-9]/.test(password)) strength += 20;
+        else messages.push("Incluye símbolos");
+
+        if (/(?=.*\d)(?=.*[a-z])(?=.*[A-Z])/.test(password)) strength += 10;
+        if (/(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[^A-Za-z0-9])/.test(password)) strength += 10;
+
+        strength = Math.min(strength, 100);
+
+        let levelText = "";
+        if (strength === 0) {
+            levelText = "NIVEL DE SEGURIDAD";
+        } else if (strength <= 30) {
+            levelText = "DÉBIL";
+        } else if (strength <= 60) {
+            levelText = "MODERADA";
+        } else if (strength <= 80) {
+            levelText = "FUERTE";
+        } else {
+            levelText = "MUY FUERTE";
+        }
+
+        return {
+            strength: strength,
+            message: messages.length > 0 && strength < 80 ? messages.join(", ") : levelText
+        };
+    }
+    
+    checkPasswordMatch() {
+        const password = this.passwordInput.value;
+        const confirmPassword = this.confirmPasswordInput.value;
+        const matchIndicator = document.getElementById('password-match');
+        
+        if (matchIndicator) {
+            if (password && confirmPassword) {
+                if (password === confirmPassword) {
+                    matchIndicator.style.display = 'flex';
+                    matchIndicator.className = 'match-indicator';
+                    matchIndicator.innerHTML = '<i class="fas fa-check"></i><span>Las contraseñas coinciden</span>';
+                } else {
+                    matchIndicator.style.display = 'flex';
+                    matchIndicator.className = 'match-indicator error';
+                    matchIndicator.innerHTML = '<i class="fas fa-times"></i><span>Las contraseñas no coinciden</span>';
+                }
+            } else {
+                matchIndicator.style.display = 'none';
+            }
+        }
+    }
+    
+    async handleRegister() {
+        if (this.validateForm()) {
+            this.setButtonState('loading');
+            
+            try {
+                const payload = {
+                    phone: this.phoneInput.value.trim(),
+                    password: this.passwordInput.value,
+                    confirm_password: this.confirmPasswordInput.value
+                };
+
+                const response = await fetch('/register', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify(payload)
+                });
+
+                const data = await response.json();
+
+                if (response.ok) {
+                    this.setButtonState('success');
+                    this.showSuccess('¡Cuenta creada exitosamente! Redirigiendo al inicio de sesión...');
+                    
+                    setTimeout(() => {
+                        window.location.href = '/';
+                    }, 2000);
+                } else {
+                    this.setButtonState('error');
+                    this.showError(data.error || 'Error al crear la cuenta. Inténtalo de nuevo.');
+                    
+                    setTimeout(() => {
+                        this.setButtonState('default');
+                    }, 3000);
+                }
+            } catch (error) {
+                this.setButtonState('error');
+                console.error('Error de conexión:', error);
+                this.showError('Error de conexión. Verifica tu internet e inténtalo de nuevo.');
+                
+                setTimeout(() => {
+                    this.setButtonState('default');
+                }, 3000);
+            }
+        }
+    }
+    
+    validateForm() {
+        const phone = this.phoneInput.value.trim();
+        const password = this.passwordInput.value;
+        const confirmPassword = this.confirmPasswordInput.value;
+        
+        if (!this.validatePhoneNumber(phone)) {
+            this.showError('Por favor ingresa un número de teléfono válido de 10 dígitos que comience con 3');
+            return false;
+        }
+        
+        if (password.length < 6) {
+            this.showError('La contraseña debe tener al menos 6 caracteres');
+            return false;
+        }
+        
+        if (password !== confirmPassword) {
+            this.showError('Las contraseñas no coinciden');
+            return false;
+        }
+        
+        return true;
+    }
+
+    setButtonState(state) {
+        const submitBtn = this.submitBtn;
+        
+        switch (state) {
+            case 'loading':
+                submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> CREANDO CUENTA...';
+                submitBtn.disabled = true;
+                submitBtn.style.opacity = '0.8';
+                break;
+            case 'success':
+                submitBtn.innerHTML = '<i class="fas fa-check"></i> CUENTA CREADA';
+                submitBtn.disabled = true;
+                submitBtn.style.background = '#47d7ac';
+                break;
+            case 'error':
+                submitBtn.innerHTML = '<i class="fas fa-times"></i> ERROR';
+                submitBtn.disabled = false;
+                submitBtn.style.background = '#f56565';
+                break;
+            default:
+                submitBtn.innerHTML = '<i class="fas fa-user-plus"></i> CREAR CUENTA';
+                submitBtn.disabled = false;
+                submitBtn.style.background = 'linear-gradient(135deg, var(--cyber-primary), var(--cyber-accent))';
+                submitBtn.style.opacity = '1';
+        }
+    }
+    
+    showError(message) {
+        this.removeExistingMessages();
+        
+        const errorElement = document.createElement('div');
+        errorElement.className = 'cyber-error-message';
+        errorElement.innerHTML = `
+            <i class="fas fa-exclamation-triangle"></i>
+            <span>${message}</span>
+        `;
+        
+        this.form.prepend(errorElement);
+        
+        setTimeout(() => {
+            if (errorElement.parentNode) {
+                errorElement.remove();
+            }
+        }, 5000);
+    }
+    
+    showSuccess(message) {
+        this.removeExistingMessages();
+        
+        const successElement = document.createElement('div');
+        successElement.className = 'cyber-success-message';
+        successElement.innerHTML = `
+            <i class="fas fa-check-circle"></i>
+            <span>${message}</span>
+        `;
+        
+        this.form.prepend(successElement);
+        
+        setTimeout(() => {
+            if (successElement.parentNode) {
+                successElement.remove();
+            }
+        }, 3000);
+    }
+    
+    removeExistingMessages() {
+        const existingMessages = document.querySelectorAll('.cyber-error-message, .cyber-success-message');
+        existingMessages.forEach(message => message.remove());
+    }
+}
+
+// Inicializar el sistema de registro simplificado
+document.addEventListener('DOMContentLoaded', () => {
+    new SimplifiedRegister();
+});
+
+// Optimizaciones adicionales para móviles
+document.addEventListener('DOMContentLoaded', function() {
+    // Prevenir zoom en gestos múltiples
+    document.addEventListener('touchstart', function(e) {
+        if (e.touches.length > 1) {
+            e.preventDefault();
+        }
+    }, { passive: false });
+    
+    // Mejorar experiencia en iOS
+    if (/iPad|iPhone|iPod/.test(navigator.userAgent)) {
+        document.body.style.cursor = 'pointer';
+        document.body.style.webkitTapHighlightColor = 'transparent';
+    }
+});
+</script>
+{% endblock %}
